@@ -1,5 +1,5 @@
 # dj-discuss
-Django project for public discussion on the web.
+[NOT READY!] Django project for public discussion on the web.
 
 # How to use
 Exact settings and steps depend on how you have your django project set up so the steps below may not always work.
