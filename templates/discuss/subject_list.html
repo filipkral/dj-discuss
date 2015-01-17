@@ -9,7 +9,7 @@
     
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-    {% if subjects  %}
+    {% if object_list  %}
         <table id="subjects-table" class="display" cellspacing="0" width="100%">
         <thead>
         <tr>
@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for sbj in subjects %}
+        {% for sbj in object_list %}
         <tr>
             <td>{{ sbj.pk }}</td>
             <td><a href="{%url 'discuss:subject' sbj.pk %}">{{ sbj.title }}</a></td>

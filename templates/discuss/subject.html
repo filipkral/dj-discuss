@@ -6,17 +6,52 @@
 
 {% block content %}
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <a href="{% url 'discuss:subject-list' %}">&laquo; All Subjects</a>
+    <p><a href="{% url 'discuss:subject' %}">&laquo; All Subjects</a></p>
     
     {% if subject %}
     
-    <h1>{ subject.title }</h1>
-    <h2>Summary</h2>
-    <p>{ subject.summary }</p>
-    <h2>Description</h2>
-    <p>{ subject.description }</p>
+    <h1>{{ subject.title }}</h1>
+    <h3>Summary</h3>
+    <p><strong>{{ subject.summary }}</strong></p>
+    <h3>Description</h3>
+    <p>{{ subject.description }}</p>
     
-    <!-- TODO: list comments to the subject -->
+    <hr />
+    {% for cmt in subject.comments.all %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ cmt.title }} <small>{{ cmt.created|date:"D d M Y" }}</small></h3>
+        </div>
+        <div class="panel-body">
+            {{ cmt.description }}
+        </div>
+    </div>
+    {% empty %}
+        <p>There are no comments on this subject.</p>
+    {% endfor %}
+    
+    <!-- submit new comment -->
+    <div class="well">{{ request.user.username }}</div>
+    {% if request.user.is_authenticated %}
+    <!-- TODO: add captcha? Is it necessary for logged in users? -->
+    <form method="POST" action="{% url 'discuss:addcomment' %}">
+        <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><input type="text" name="commenttitle" id="commenttitle" size="100" value="Comment title" /></h3>
+        </div>
+        <div class="panel-body">
+            <input type="textarea" name="commenttext" size="100" />
+            <input type="text" name="subjectid" value="{{ subject.pk }}" disabled="disabled" />
+            <button class="btn btn-primary" name="submit" value="submit">Submit</button>
+        </div>
+        </div>
+    </form>
+    {% else %}
+     <p>Only longged in users can add comments</p>
+     <!--TODO: <a href="{% url 'discuss:login' %}">Log in to add comments</a>-->
+    {% endif %}
+    
+    <hr />
 
     {% else %}
         <p>This does not seem to be an existing subject.</p>
