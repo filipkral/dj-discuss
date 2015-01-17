@@ -1,0 +1,35 @@
+{% extends "discuss/discuss_base.html" %}
+
+{% block extrahead %}
+
+{% endblock extrahead %}
+
+{% block content %}
+    <h1>Discuss: Subject List</h1>
+    
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    {% if subjects  %}
+        <table id="subjects-table" class="display" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sbj in subjects %}
+        <tr>
+            <td>{{ sbj.pk }}</td>
+            <td><a href="{%url 'discuss:subject' sbj.pk %}">{{ sbj.title }}</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    {% else %}
+        <p>There seem to be no subjects.</p>
+    {% endif %}
+
+    <p><a href="{% url 'discuss:home' %}">Home page.</a></p>
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends "discuss/discuss_base.html" %}
+
+{% block extrahead %}
+
+{% endblock extrahead %}
+
+{% block content %}
+    <h1>Discuss</h1>
+    <p>A django application to discuss custom subjects.</p>
+    <p><a id="go-subjects" href="{% url 'discuss:subject' %}">List all subjects</a></p>
+{% endblock content %}

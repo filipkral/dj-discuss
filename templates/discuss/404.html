@@ -1,12 +1,11 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Discuss</title>
-</head>
+{% extends "discuss/discuss_base.html" %}
 
-<body>
+{% block extrahead %}
+
+{% endblock extrahead %}
+
+{% block content %}
     <h1>404 - Not Found</h1>
-    <p><strong>Sorry, there is nothing to dicusss here.</strong></p>
-    <p>PLease select another subject on <a href="{% url 'discuss:home' %}">the home page.</a></p>
-</html>
+    <p><strong>Sorry, there is nothing to dicuss here.</strong></p>
+    <p>Please start again from <a href="{% url 'discuss:home' %}">the home page.</a></p>
+{% endblock content %}

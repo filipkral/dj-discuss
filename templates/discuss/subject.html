@@ -1,0 +1,24 @@
+{% extends "discuss/discuss_base.html" %}
+
+{% block extrahead %}
+
+{% endblock extrahead %}
+
+{% block content %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <a href="{% url 'discuss:subject-list' %}">&laquo; All Subjects</a>
+    
+    {% if subject %}
+    
+    <h1>{ subject.title }</h1>
+    <h2>Summary</h2>
+    <p>{ subject.summary }</p>
+    <h2>Description</h2>
+    <p>{ subject.description }</p>
+    
+    <!-- TODO: list comments to the subject -->
+
+    {% else %}
+        <p>This does not seem to be an existing subject.</p>
+    {% endif %}
+{% endblock content %}
