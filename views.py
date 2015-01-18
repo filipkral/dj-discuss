@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from .models import Subject, Comment
 from django.views.generic.list import ListView
@@ -10,8 +11,26 @@ def home(request):
     return render(request, 'discuss/index.html')
 
 
-def login(request):
+def login_page(request):
     return render(request, 'discuss/login.html')
+
+
+def login_user(request):
+    myname = request.POST.get("myname")
+    myword = request.POST.get("myword")
+    # TODO: verify humanity by adding a checbox and ticking it on '#myname'.mouseenter
+    user = authenticate(username=myname, password=myword)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            return redirect('discuss:subject')
+        else:
+            # TODO: Add "The password is valid, but the account has been disabled!"
+            return redirect('discuss:login')
+    else:
+        # TODO: Add invalid user details message.
+        return redirect('discus:login')
+
 
 class SubjectListView(ListView):
     model = Subject

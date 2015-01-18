@@ -5,5 +5,17 @@
 {% endblock extrahead %}
 
 {% block content %}
-    <h1>Log in screat is not ready yet, sorry.</h1>
+    <h1>Log in to discuss subjects</h1>
+    <form method="POST" action="{% url 'discuss:login-user' %}">
+        {% csrf_token %}
+        <p>username</p>
+        <p><input type="textarea" id="myname" name="myname" size="20"/></p>
+        <p>password</p>
+        <p><input type="password" id="myword" name="myword" size="20"/></p>
+        <button class="btn btn-primary" id="go-login" type="submit" value="Submit" />Submit</button>
+    </form>
+    <hr />
+    <p>Need a user account? Email example@example.eg to request one.</p>
+    
+    <p><a href="{% url 'discuss:home' %}">Home page.</a></p>
 {% endblock content %}

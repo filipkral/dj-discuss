@@ -5,7 +5,7 @@
 {% endblock extrahead %}
 
 {% block content %}
-    <h1>Discuss</h1>
+    <h1>Welcome to Discuss</h1>
     <p>A django application to discuss custom subjects.</p>
-    <p><a id="go-subjects" href="{% url 'discuss:subject' %}">List all subjects</a></p>
+    <p><a class="btn btn-default btn-lg" id="go-subjects" href="{% url 'discuss:subject' %}">List all subjects &raquo;</a></p>
 {% endblock content %}

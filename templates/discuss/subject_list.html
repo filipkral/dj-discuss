@@ -10,7 +10,7 @@
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
     {% if object_list  %}
-        <table id="subjects-table" class="display" cellspacing="0" width="100%">
+        <table id="subjects-table" class="display table" cellspacing="0" width="100%">
         <thead>
         <tr>
             <th>Id</th>
@@ -31,5 +31,5 @@
         <p>There seem to be no subjects.</p>
     {% endif %}
 
-    <p><a href="{% url 'discuss:home' %}">Home page.</a></p>
+    <p><a href="{% url 'discuss:home' %}">Home page</a></p>
 {% endblock content %}

@@ -8,10 +8,14 @@
 	{% block stylesheets %}
 	<!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
     {% endblock stylesheets %}
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    
     
     {% block extrahead %}
     {% endblock %}
@@ -19,6 +23,14 @@
 
 <body>
     <div class="container">
+    <h1><a href="{% url 'discuss:home' %}">Discuss</a> <small>Your comments count</small></h1>
+    <div class="well pull-right">
+        {% if user.is_authenticated %}
+            <p>Hello {{ user.username }}. <a href="{% url 'discuss:logout' %}">Log out</a></p>
+        {% else %}
+            <p><a href="{% url 'discuss:login' %}">Log in to discuss.</a></p>
+        {% endif %}
+    </div>
     {% block content %}
     {% endblock %}
     </div>

@@ -49,7 +49,7 @@
         </div>
     </form>
     {% else %}
-     <div class="alert  alert-info">Only longged in users can add comments</div>
+     <div class="alert alert-info"><a href="{% url 'discuss:login' %}">Log in to add comments.</a></div>
      <!--TODO: <a href="{% url 'discuss:login' %}">Log in to add comments</a>-->
     {% endif %}
     
