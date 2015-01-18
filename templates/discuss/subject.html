@@ -10,17 +10,18 @@
     
     {% if subject %}
     
-    <h1>{{ subject.title }}</h1>
-    <h3>Summary</h3>
+    <h2>{{ subject.title }}</h2>
+    <h4>Summary</h4>
     <p><strong>{{ subject.summary }}</strong></p>
-    <h3>Description</h3>
+    <h4>Description</h4>
     <p>{{ subject.description }}</p>
     
     <hr />
+    <h3>Comments</h3>
     {% for cmt in subject.comments.all %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{ cmt.title }} <small>{{ cmt.created|date:"D d M Y" }}</small></h3>
+            <h3 class="panel-title"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ cmt.title }} <small>{{ cmt.created|date:"D d M Y" }}</small></h3>
         </div>
         <div class="panel-body">
             {{ cmt.description }}
@@ -31,23 +32,24 @@
     {% endfor %}
     
     <!-- submit new comment -->
-    <div class="well">{{ request.user.username }}</div>
-    {% if request.user.is_authenticated %}
+    {% if user.is_authenticated %}
     <!-- TODO: add captcha? Is it necessary for logged in users? -->
     <form method="POST" action="{% url 'discuss:addcomment' %}">
+        {% csrf_token %}
         <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title"><input type="text" name="commenttitle" id="commenttitle" size="100" value="Comment title" /></h3>
+            <h3 class="panel-title">Add Comment</h3>
         </div>
         <div class="panel-body">
-            <input type="textarea" name="commenttext" size="100" />
-            <input type="text" name="subjectid" value="{{ subject.pk }}" disabled="disabled" />
+            <p><input type="text" name="commenttitle" id="commenttitle" size="50" value="Comment title" /></p>
+            <textarea rows="4" cols="100" name="commenttext" id="commenttext">Comment text</textarea>
+            <p><input type="text" name="subjectid" value="{{ subject.pk }}" disabled="disabled" style="display: none"/></p>
             <button class="btn btn-primary" name="submit" value="submit">Submit</button>
         </div>
         </div>
     </form>
     {% else %}
-     <p>Only longged in users can add comments</p>
+     <div class="alert  alert-info">Only longged in users can add comments</div>
      <!--TODO: <a href="{% url 'discuss:login' %}">Log in to add comments</a>-->
     {% endif %}
     
@@ -56,4 +58,6 @@
     {% else %}
         <p>This does not seem to be an existing subject.</p>
     {% endif %}
+    
+    <p><a href="{% url 'discuss:subject' %}">&laquo; All Subjects</a></p>
 {% endblock content %}

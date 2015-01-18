@@ -36,9 +36,9 @@ def add_comment(request):
     
     if request.method == "POST":
         
-        subjectid = request.POST.subjectid
-        title = request.POST.commenttitle
-        text = request.POST.commenttext
+        subjectid = request.POST.get("subjectid")
+        title = request.POST.get("commenttitle")
+        text = request.POST.get("commenttext")
         # TODO: verify input!
         
         s = Subject.objects.get(pk=subjectid)
