@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render, render_to_response, get_object_or_404
+from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from .models import Subject, Comment
 from django.views.generic.list import ListView
 
@@ -39,13 +39,15 @@ def add_comment(request):
         subjectid = request.POST.get("subjectid")
         title = request.POST.get("commenttitle")
         text = request.POST.get("commenttext")
+        author = get_object_or_404(User, username=request.user.username)
         # TODO: verify input!
         
-        s = Subject.objects.get(pk=subjectid)
-        c = Comment(title=title, description=text, subject=s)
+        s = Subject.objects.get(pk=int(subjectid))
+        c = Comment(title=title, description=text, subject=s, owner=author)
         c.save()
     
-    return render(request, 'discuss/subject.html',  {'subject': s})
+    #return render(request, 'discuss/subject.html',  {'subject': s})
+    return redirect('discuss:subject', pk=s.pk)
         
         
 

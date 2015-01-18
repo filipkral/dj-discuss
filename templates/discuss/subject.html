@@ -21,7 +21,7 @@
     {% for cmt in subject.comments.all %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ cmt.title }} <small>{{ cmt.created|date:"D d M Y" }}</small></h3>
+            <h3 class="panel-title"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ cmt.title }} <small>{{ cmt.created|date:"D d M Y" }} by {{ cmt.owner }}</small></h3>
         </div>
         <div class="panel-body">
             {{ cmt.description }}
@@ -43,7 +43,7 @@
         <div class="panel-body">
             <p><input type="text" name="commenttitle" id="commenttitle" size="50" value="Comment title" /></p>
             <textarea rows="4" cols="100" name="commenttext" id="commenttext">Comment text</textarea>
-            <p><input type="text" name="subjectid" value="{{ subject.pk }}" disabled="disabled" style="display: none"/></p>
+            <p><input type="text" name="subjectid" value="{{ subject.pk }}" style="display: none"/></p>
             <button class="btn btn-primary" name="submit" value="submit">Submit</button>
         </div>
         </div>
