@@ -1,6 +1,8 @@
 # dj-discuss
 [NOT READY!] Django project for public discussion on the web.
 
+The last live vesion is [https://trial-filipkral.c9.io](https://trial-filipkral.c9.io)
+
 # How to use
 Exact settings and steps depend on how you have your django project set up so the steps below may not always work.
 
