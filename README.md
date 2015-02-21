@@ -6,7 +6,7 @@ The last live vesion is [https://trial-filipkral.c9.io](https://trial-filipkral.
 # How to use
 Exact settings and steps depend on how you have your django project set up so the steps below may not always work.
 
-1) Add download the app and add it to django apps.
+1) Download the app and add it to django apps.
 
 2) Add the discuss app to settings.py under INSTALLED_APPS.
 
