@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from .models import Subject, Comment
 from django.views.generic.list import ListView
@@ -32,6 +32,10 @@ def login_user(request):
         return redirect('discus:login')
 
 
+def logout_user(request):
+    logout(request)
+    return redirect('discus:login')
+        
 class SubjectListView(ListView):
     model = Subject
 
