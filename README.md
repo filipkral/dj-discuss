@@ -12,12 +12,14 @@ Exact settings and steps depend on how you have your django project set up so th
 
 3) Makse sure settings.py defines static root, e.g. `STATIC_ROOT = '/var/www/discuss-static'`
 
-4) Add the discuss app to your project's urls.py, e.g. `url(r'^$', include('discuss.urls', namespace="discuss"))`. The namespace has to be `discuss`!
+4) Add the discuss app to your project's urls.py, e.g. `url(r'^discuss', include('discuss.urls', namespace="discuss"))`. The namespace has to be `discuss`!
 
 5) Run `python manage.py migrate`
 
 6) Run `python manage.py collectstatic`
 
-7) Run the server and direct your web browser to the discuss home url.
+7) Run the server and direct your web browser to the discuss url from step 4.
+
+You need to manage users yourself, e.g. run `python manage.py createsuperuser`.
 
 Done.
