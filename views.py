@@ -29,12 +29,12 @@ def login_user(request):
             return redirect('discuss:login')
     else:
         # TODO: Add invalid user details message.
-        return redirect('discus:login')
+        return redirect('discuss:login')
 
 
 def logout_user(request):
     logout(request)
-    return redirect('discus:login')
+    return redirect('discuss:login')
         
 class SubjectListView(ListView):
     model = Subject

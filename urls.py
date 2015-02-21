@@ -10,7 +10,6 @@ urlpatterns = patterns('',
     url(r'^add-comment/$', views.add_comment, name="addcomment"),
     url(r'^login/$', views.login_page, name="login"),
     url(r'^login-user/$', views.login_user, name="login-user"),
-    #url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name="logout")
-    url(r'^logout/$', 'views.logout_user', name="logout")
+    url(r'^logout/$', views.logout_user, name="logout")
     
 )
